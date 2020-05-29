@@ -1,14 +1,12 @@
 import React from 'react';
 import { SecondaryTitle } from '../../atoms/SecondaryTitle/secondary-title';
 import { RecipeList } from '../../organisms/RecipeList/recipe-list';
-
-const recipesList = [
-    { title: 'Risotto con setas', href: 'http://www.google.es'},
-    { title: 'Carne con tomate', href: 'http://www.google.es'},
-    { title: 'Te con sabor a tarta de queso', href: 'http://www.google.es'},
-];
+import { useStateValue } from '../../../stateManagement/stateManagement';
 
 export function RecipesListTemplate() {
+    const [state] = useStateValue();
+    const { recipesState: { recipesList } } = state;
+
     return(
         <>
             <SecondaryTitle>Recipes</SecondaryTitle>
