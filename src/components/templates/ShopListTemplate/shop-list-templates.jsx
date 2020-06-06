@@ -5,6 +5,7 @@ import { useStateValue } from '../../../stateManagement/stateManagement';
 
 export function ShopListTemplate() {
     const [state] = useStateValue();
+
     const { ingredientsState: { ingredientsList } } = state;
 
     return(

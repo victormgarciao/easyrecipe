@@ -5,7 +5,7 @@ export function mainReducer(mainState, action) {
     const { ingredientsState, recipesState } = mainState;
 
     return {
-        ingredientsReducer: ingredientsReducer(ingredientsState, action),
+        ingredientsState: ingredientsReducer(ingredientsState, action),
         recipesState: recipesReducer(recipesState, action),
     }
 };
