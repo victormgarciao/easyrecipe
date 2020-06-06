@@ -12,9 +12,9 @@ const customStyle = {
 
 export function RecipeSearch() {
     return(
-        <div class="ui action input" style={customStyle.root}>
+        <div className="ui action input" style={customStyle.root}>
             <InputText placeholder="easyrecipe.com" />
-            <Button class="ui button">Search link...</Button>
+            <Button className="ui button">Search link...</Button>
         </div>
     );
 };

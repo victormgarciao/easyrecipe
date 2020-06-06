@@ -11,7 +11,7 @@ export function MainTitle(props) {
     const { children } = props;
     return (
         <h1
-            class="ui center aligned header"
+            className="ui center aligned header"
             style={customStyles.title}
         >
             {children}

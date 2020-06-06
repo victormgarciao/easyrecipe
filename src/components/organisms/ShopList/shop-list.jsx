@@ -3,7 +3,8 @@ import { List } from '../../molecules/List/list';
 import { ShopListItem } from '../../molecules/ShopListItem/shop-list-item';
 
 function createShopListItemComponent(item) {
-    return <ShopListItem>{item}</ShopListItem>;
+    const {recipeLink, ingredient, recipeTitle } = item;
+    return <ShopListItem key={`${recipeLink}-${ingredient}`}>{ingredient} - {recipeTitle}</ShopListItem>;
 }
 
 export function ShopList(props) {

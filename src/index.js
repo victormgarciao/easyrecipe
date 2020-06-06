@@ -13,7 +13,7 @@ import { mainReducer } from './reducers/mainReducer';
 function App() {
     return (
         <StateProvider initialState={initialState} reducer={mainReducer}>
-            <div class="main ui container">
+            <div className="main ui container">
                 <MainTitle>EasyRecipe</MainTitle>
                 <RecipeSearch />
                 <ShopListTemplate />
