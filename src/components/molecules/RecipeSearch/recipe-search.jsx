@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../../atoms/Button/button';
 import { InputText } from '../../atoms/InputText/input-text';
 import { useLink } from '../../../use/useLink';
@@ -13,20 +13,26 @@ const customStyle = {
 
 export function RecipeSearch() {
     const handleLink = useLink();
+    const [link, setLink] = useState('');
+    function onChange(event) {
+        setLink(event.target.value);
+    }
 
-    const link =  {
-        ingredients: [
-            { recipeLink: 'http://www.tupitupi.es', ingredient: '100g sal', recipeTitle: 'Gazpacho' },
-            { recipeLink: 'http://www.tupituipi.es', ingredient: '1 patata', recipeTitle: 'Gazpacho' },
-        ],
-        recipe: { title: 'Gazpacho', href: 'http://www.gazpacho.es'},
-    };
+    function onClick() {
+        setLink('');
+        handleLink(link)
+    }
+
     return(
         <div className="ui action input" style={customStyle.root}>
-            <InputText placeholder="easyrecipe.com" />
+            <InputText
+                placeholder="easyrecipe.com"
+                onChange={onChange}
+                value={link}
+            />
             <Button
                 className="ui button"
-                onClick={() => handleLink(link)}
+                onClick={onClick}
             >
                 Search link...
             </Button>
