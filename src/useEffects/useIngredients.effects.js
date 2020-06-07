@@ -1,11 +1,9 @@
 import { useStateValue } from '../stateManagement/stateManagement';
+import { addIngredients } from '../actions/ingredients.actions';
 
 function useAddIngredients(dispatch) {
-    return async function addIngredients(ingredients) {
-        dispatch({
-            type: 'ADD_INGREDIENTS',
-            payload: ingredients,
-        });
+    return async function dispatchAddIngredients(ingredients) {
+        dispatch(addIngredients(ingredients));
     };
 }
 

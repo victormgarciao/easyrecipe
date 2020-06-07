@@ -1,11 +1,9 @@
 import { useStateValue } from '../stateManagement/stateManagement';
+import { addRecipe } from '../actions/recipes.actions';
 
 function useAddRecipe(dispatch) {
-    return async function addRecipe(recipe) {
-        dispatch({
-            type: 'ADD_RECIPE',
-            payload: recipe,
-        });
+    return async function dispatchAddRecipe(recipe) {
+        dispatch(addRecipe(recipe));
     };
 }
 

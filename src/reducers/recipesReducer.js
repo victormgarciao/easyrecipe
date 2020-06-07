@@ -1,8 +1,9 @@
 import { uniq } from 'ramda';
+import { ADD_RECIPE } from '../actions/recipes.actions';
 
 export function recipesReducer(state, action) {
     switch(action.type) {
-        case 'ADD_RECIPE': {
+        case ADD_RECIPE: {
             const nextState = {
                 ...state,
                 recipesList: uniq([
