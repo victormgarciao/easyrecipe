@@ -1,6 +1,6 @@
 import { useStateValue } from '../stateManagement/stateManagement';
 
-function useDispatchToAddRecipe(dispatch) {
+function useAddRecipe(dispatch) {
     return async function addRecipe(recipe) {
         dispatch({
             type: 'ADD_RECIPE',
@@ -12,7 +12,7 @@ function useDispatchToAddRecipe(dispatch) {
 export function useRecipesEffects() {
     const [, dispatch] = useStateValue();
 
-    const addRecipe = useDispatchToAddRecipe(dispatch);
+    const addRecipe = useAddRecipe(dispatch);
 
     return { addRecipe };
 }

@@ -1,9 +1,8 @@
 import { getLinkElement } from '../services/link.service';
-import { useStateValue } from '../stateManagement/stateManagement';
 import { useIngredientsEffects } from './useIngredients.effects';
 import { useRecipesEffects } from './useRecipes.effects';
 
-function useDispatchToHandleLink(dispatch) {
+function useHandleLink() {
     const { addIngredients } = useIngredientsEffects();
     const { addRecipe } = useRecipesEffects();
 
@@ -44,9 +43,6 @@ function useDispatchToHandleLink(dispatch) {
 }
 
 export function useLinkEffects() {
-    const [, dispatch] = useStateValue();
-
-    const handleLink = useDispatchToHandleLink(dispatch);
-
+    const handleLink = useHandleLink();
     return { handleLink };
 }
