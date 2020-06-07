@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../../atoms/Button/button';
 import { InputText } from '../../atoms/InputText/input-text';
-import { useLink } from '../../../use/useLink';
+import { useLinkEffects } from '../../../useEffects/useLink.effects';
 
 const customStyle = {
     root: {
@@ -12,7 +12,7 @@ const customStyle = {
 };
 
 export function RecipeSearch() {
-    const handleLink = useLink();
+    const { handleLink } = useLinkEffects();
     const [link, setLink] = useState('');
     function onChange(event) {
         setLink(event.target.value);

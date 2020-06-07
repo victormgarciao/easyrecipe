@@ -1,10 +1,13 @@
 import { getLinkElement } from '../services/link.service';
 import { useStateValue } from '../stateManagement/stateManagement';
+import { useIngredientsEffects } from './useIngredients.effects';
+import { useRecipesEffects } from './useRecipes.effects';
 
-export function useLink() {
-    const [, dispatch] = useStateValue();
+function useDispatchToHandleLink(dispatch) {
+    const { addIngredients } = useIngredientsEffects();
+    const { addRecipe } = useRecipesEffects();
 
-    const manageLink = async (link) => {
+    return async function handleLink(link) {
         const linkElement = await getLinkElement(link);
 
         console.log(linkElement);
@@ -28,7 +31,6 @@ export function useLink() {
 
             if (isMatch) {
                 const itemsList = nextElementSibling.querySelectorAll('li');
-                console.log('whaaa', itemsList)
                 itemsList.forEach((item) => {
                     ingredients.push({ recipeLink: recipe.href, ingredient: item.textContent, recipeTitle: recipe.title });
                 })
@@ -36,30 +38,15 @@ export function useLink() {
             }
         }
 
-        console.log(ingredients);
-       
-
-        // const tupi = linkElement.getElementsByTagName('body')[0];
-        // var content = tupi.textContent || tupi.innerText;
-        // var hasText = content.indexOf("ingredient")!==-1;
-        // // if (hasText) {
-        // //     document.getElementById("show").style.display = 'block';
-        // // } else {
-        // //     document.getElementById("show").style.display = 'none';
-        // // }
-
-        // console.log(hasText);
-
-        // const { ingredients } = link;
-        dispatch({
-            type: 'ADD_INGREDIENTS',
-            payload: ingredients,
-        });
-        dispatch({
-            type: 'ADD_RECIPE',
-            payload: recipe,
-        });
+        addIngredients(ingredients);
+        addRecipe(recipe);
     };
+}
 
-    return manageLink;
+export function useLinkEffects() {
+    const [, dispatch] = useStateValue();
+
+    const handleLink = useDispatchToHandleLink(dispatch);
+
+    return { handleLink };
 }
