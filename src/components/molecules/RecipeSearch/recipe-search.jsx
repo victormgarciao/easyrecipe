@@ -12,7 +12,7 @@ const customStyle = {
 };
 
 export function RecipeSearch() {
-    const { handleLink } = useLinkEffects();
+    const { handleDataFromLink } = useLinkEffects();
     const [link, setLink] = useState('');
     function onChange(event) {
         setLink(event.target.value);
@@ -20,7 +20,7 @@ export function RecipeSearch() {
 
     function onClick() {
         setLink('');
-        handleLink(link)
+        handleDataFromLink(link)
     }
 
     return(
