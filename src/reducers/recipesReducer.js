@@ -1,19 +1,11 @@
-import { uniq } from 'ramda';
+import { cond } from 'ramda';
 import { ADD_RECIPE } from '../actions/recipes.actions';
+import { ifNot } from '../utils/common.utils';
+import { isAction, returnState } from './utils/reducers.utils';
+import { addRecipeToStore } from './sideEffects/recipes.sideeffects';
 
-export function recipesReducer(state, action) {
-    switch(action.type) {
-        case ADD_RECIPE: {
-            const nextState = {
-                ...state,
-                recipesList: uniq([
-                    ...state.recipesList,
-                    action.payload,
-                ]),
-            };
-            return nextState;
-        }
-        default:
-            return state;
-    };
-};
+
+export const recipesReducer = cond([
+    [isAction(ADD_RECIPE), addRecipeToStore],
+    [ifNot, returnState],
+]);
