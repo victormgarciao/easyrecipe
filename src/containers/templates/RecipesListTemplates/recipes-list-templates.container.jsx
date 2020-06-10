@@ -1,13 +1,13 @@
 import React from 'react';
-import { SecondaryTitle } from '../../atoms/SecondaryTitle/secondary-title';
-import { RecipeList } from '../../organisms/RecipeList/recipe-list';
 import { useStateValue } from '../../../stateManagement/stateManagement';
+import { SecondaryTitle } from '../../../components/atoms/SecondaryTitle/secondary-title';
+import { RecipeList } from '../../../components/organisms/RecipeList/recipe-list';
 
-export function RecipesListTemplate() {
+export function RecipesListTemplateContainer() {
     const [state] = useStateValue();
     const { recipesState: { recipesList } } = state;
 
-    return(
+    return (
         <>
             <SecondaryTitle>Recipes</SecondaryTitle>
             <RecipeList recipesList={recipesList} />

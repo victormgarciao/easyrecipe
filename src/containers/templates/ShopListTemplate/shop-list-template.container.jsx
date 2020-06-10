@@ -1,9 +1,9 @@
 import React from 'react';
-import { SecondaryTitle } from '../../atoms/SecondaryTitle/secondary-title';
-import { ShopList } from '../../organisms/ShopList/shop-list';
 import { useStateValue } from '../../../stateManagement/stateManagement';
+import { SecondaryTitle } from '../../../components/atoms/SecondaryTitle/secondary-title';
+import { ShopList } from '../../../components/organisms/ShopList/shop-list';
 
-export function ShopListTemplate() {
+export function ShopListTemplateContainer() {
     const [state] = useStateValue();
 
     const { ingredientsState: { ingredientsList } } = state;

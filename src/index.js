@@ -2,9 +2,9 @@ import React from  'react';
 import ReactDOM from 'react-dom';
 
 import { MainTitle } from './components/atoms/MainTitle/main-title';
-import { RecipesListTemplate } from './components/templates/RecipesListTemplate/recipes-list-template';
-import { RecipeSearch } from './components/molecules/RecipeSearch/recipe-search';
-import { ShopListTemplate } from './components/templates/ShopListTemplate/shop-list-templates';
+import { RecipeSearchContainer } from './containers/molecules/RecipeSearch/recipe-search.container';
+import { ShopListTemplateContainer } from './containers/templates/ShopListTemplate/shop-list-template.container';
+import { RecipesListTemplateContainer } from './containers/templates/RecipesListTemplates/recipes-list-templates.container.jsx';
 
 import { StateProvider } from './stateManagement/stateManagement'
 import { initialState } from './stateManagement/initialState';
@@ -15,9 +15,9 @@ function App() {
         <StateProvider initialState={initialState} reducer={mainReducer}>
             <div className="main ui container">
                 <MainTitle>EasyRecipe</MainTitle>
-                <RecipeSearch />
-                <ShopListTemplate />
-                <RecipesListTemplate />
+                <RecipeSearchContainer />
+                <ShopListTemplateContainer />
+                <RecipesListTemplateContainer />
             </div>
         </StateProvider>
     );
