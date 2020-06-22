@@ -2,7 +2,7 @@ import { takeFirst } from "../../utils/common.utils";
 
 
 export function isAction(actionName) {
-    return function isAddRecipeAction(...args) {
+    return function isAnAction(...args) {
         const [,action] = args;
         const { type } = action;
         return type === actionName;

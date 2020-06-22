@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLinkEffects } from '../../../useEffects/useLink.effects';
+import { useLinkEffects } from '../../../useEffects/link.effects';
 import { RecipeSearch } from '../../../components/molecules/RecipeSearch/recipe-search';
 
 export function RecipeSearchContainer() {
@@ -12,7 +12,7 @@ export function RecipeSearchContainer() {
 
     function handleSearch() {
         setLink('');
-        handleDataFromLink(link)
+        handleDataFromLink(link);
     }
 
     return(

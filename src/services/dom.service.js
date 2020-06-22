@@ -1,4 +1,4 @@
-import { pipe, cond, isNil, always, both, propEq } from 'ramda';
+import { pipe, cond, isNil, always, both, propEq, propOr, propSatisfies } from 'ramda';
 import { takeFirst, isTrue, ifNot, isFalse } from '../utils/common.utils';
 
 
@@ -55,20 +55,48 @@ export function getIngredientListElement(props) {
     return { ...props, ingredientsListElement }
 }
 
-export function getIngredientList(props) {
+
+export function createIngredientList(props) {
     const { ingredientsListElement } = props;
     const ingredientList = [...ingredientsListElement.getElementsByTagName('LI')];
-    return { ...props, ingredientList };
+
+    return {
+        ...props,
+        ingredientList,
+        error: null,
+    };
 }
+
+export function createIngredientsError(props) {
+    return {
+        ...props,
+        ingredientList: [],
+        error: new Error('Ingredients not found'),
+    }
+}
+
+export const getIngredientList = cond([
+    [ propSatisfies(isNil, 'ingredientsListElement'), createIngredientsError],
+    [ ifNot, createIngredientList ],
+]);
 
 function getAllH1FromElement({ linkElement }) {
     return linkElement.getElementsByTagName('h1');
 }
 
-function getTextContentFromElement({ textContent }) { return textContent }
+const defaultTitle = 'Custom Recipe';
+const getTitleFromTextContent = propOr(defaultTitle, 'textContent');
 
 export const getTitleFromElement = pipe(
     getAllH1FromElement,
     takeFirst,
-    getTextContentFromElement,
+    getTitleFromTextContent,
 );
+
+export function addBodyStylesForModalInDom() {
+    document.body.style.overflow = 'hidden';
+};
+export function restoreBodyStylesInDom() {
+    document.body.style.overflowX = 'hidden';
+    document.body.style.overflowY = 'unset';
+};

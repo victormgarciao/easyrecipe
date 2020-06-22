@@ -1,13 +1,17 @@
 import React from 'react';
 
 export function Button(props) {
-    const { children: label, ...buttonProps } = props;
+    const {
+        children,
+        customClassNames,
+        ...buttonProps
+    } = props;
     return (
         <button
-            className="ui button"
+            className={`ui button ${customClassNames}`}
             {...buttonProps}
         >
-            <span>{label}</span>
+            {children}
         </button>
     );
 };
