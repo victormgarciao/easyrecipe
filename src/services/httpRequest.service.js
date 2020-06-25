@@ -25,22 +25,24 @@ const getDataFromHttpRequest = cond([
     [hasHttpRequestContent, handleDataFromElement]
 ]);
 
+
+
+
+
 export function onHttpRequestReadyStateChange(props) {
     return new Promise((resolve) => {
         const { request } = props;
+
+        function hasFetchedData(data) { return not(isNil(data)); }
+        function resolveData(data) { resolve(data) }
+
+        const handleFetchData = cond([
+            [ hasFetchedData, resolveData ]
+        ]);
+
         request.onreadystatechange = function handleState() {
             const data = getDataFromHttpRequest(props);
-
-
-            // PONER ESTO BONITO
-            cond([[
-                () => not(isNil(data)), () => {
-                    resolve(data)
-                }
-            ]])()
-
-
-            
+            handleFetchData(data);
         };
     });
 };

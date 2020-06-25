@@ -7,20 +7,18 @@ export function ModalQueueTemplateContainer() {
     const modalQueue = useModalQueueState();
     const currentModalData = modalQueue[0];
     const hasModals = !!currentModalData;
-    
-    function getContentModal() {
-        const { modalName } = currentModalData;
-        return modalMap[modalName];
+
+    function getModalProps() {
+        const { modalName, modalProps } = currentModalData;
+        return {
+            modalProps,
+            contentModal: modalMap[modalName],
+        };
     }
 
     return (
         <>
-        {hasModals && (
-            <Modal
-                currentModalData={currentModalData}
-                contentModal={getContentModal()}
-            />
-        )}
+            {hasModals && <Modal {...getModalProps()} />}
         </>
     );
 };

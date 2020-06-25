@@ -8,6 +8,7 @@ import { CancelButton } from '../../../components/molecules/Buttons/cancel-butto
 import { AcceptButton } from '../../../components/molecules/Buttons/accept-button';
 import { BugIcon } from '../../../components/atoms/icons/bugIcon';
 import { Link } from '../../../components/atoms/Link/link';
+import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
 
 export function IngredientsNotFoundModal(props) {
     const { link } = props;
@@ -23,7 +24,7 @@ export function IngredientsNotFoundModal(props) {
         <>
             <ModalHeader>
                 <BugIcon customClassNames='red'/>
-                Is it a recipes website?
+                <ModalTitle>Is it a recipes website?</ModalTitle>
             </ModalHeader>
             <ModalBody>
                 <p>We could not find a list with ingredients. If you think it is an error, you can report it and we wil check it.</p>
