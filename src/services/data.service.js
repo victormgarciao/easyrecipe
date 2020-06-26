@@ -1,38 +1,35 @@
-import { pipe } from 'ramda';
+import { pipe, cond, propSatisfies, isNil, identity } from 'ramda';
 import { getHttpRequest, openHttpRequestWithLink, sendHttpRequest, onHttpRequestReadyStateChange } from './httpRequest.service';
 import { getTitleFromElement, getIngredientListElement, getIngredientList } from './dom.service';
+import { ifNot } from '../utils/common.utils';
 
 
 function createIngredient(recipe) {
     return function makeObject(item) {
         const { href: recipeLink, title: recipeTitle } = recipe;
         const { textContent: ingredient } = item;
-
+    
         return { recipeLink, ingredient, recipeTitle };
     };
 }
 
 function normalizeIngredientsList(props) {
     const { ingredientList, recipe } = props;
-    return ingredientList.map(createIngredient(recipe))
+    return {
+        ...props,
+        ingredients: ingredientList.map(createIngredient(recipe)),
+    }
 }
 
-export function addIngredientsAndRecipeToStore(props) {
-    const {
-        addIngredients,
-        addRecipe,
-        ingredients,
-        recipe,
-    } = props;
-    addIngredients(ingredients);
-    addRecipe(recipe);
-    return props;
-}
+const handleIngredientsList = cond([
+    [ propSatisfies(isNil, 'error'), normalizeIngredientsList ],
+    [ ifNot, identity ],
+]);
 
 const getIngredientsFromDom = pipe(
     getIngredientListElement,
     getIngredientList,
-    normalizeIngredientsList,
+    handleIngredientsList,
 );
 
 export function createIngredientsObject(props) {
@@ -41,7 +38,7 @@ export function createIngredientsObject(props) {
     
     return {
         ...props,
-        ingredients: getIngredientsFromDom({ allElements, recipe }),
+        ...getIngredientsFromDom({ allElements, recipe }),
     };
 }
 

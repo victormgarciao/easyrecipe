@@ -1,5 +1,5 @@
-import { pipe, equals, cond } from 'ramda';
-import { createRecipeObject, createIngredientsObject, addIngredientsAndRecipeToStore } from './data.service';
+import { pipe, equals, cond, isNil, not } from 'ramda';
+import { createRecipeObject, createIngredientsObject } from './data.service';
 
 
 function makeElementWithHttpRequest(props) {
@@ -14,7 +14,6 @@ export const handleDataFromElement = pipe(
     makeElementWithHttpRequest,
     createRecipeObject,
     createIngredientsObject,
-    addIngredientsAndRecipeToStore,
 );
 
 function hasHttpRequestContent(props) {
@@ -26,13 +25,26 @@ const getDataFromHttpRequest = cond([
     [hasHttpRequestContent, handleDataFromElement]
 ]);
 
-export function onHttpRequestReadyStateChange(props) {
-    const { request } = props;
-    request.onreadystatechange = function handleState() {
-        return getDataFromHttpRequest(props);
-    };
 
-    return props;
+
+
+
+export function onHttpRequestReadyStateChange(props) {
+    return new Promise((resolve) => {
+        const { request } = props;
+
+        function hasFetchedData(data) { return not(isNil(data)); }
+        function resolveData(data) { resolve(data) }
+
+        const handleFetchData = cond([
+            [ hasFetchedData, resolveData ]
+        ]);
+
+        request.onreadystatechange = function handleState() {
+            const data = getDataFromHttpRequest(props);
+            handleFetchData(data);
+        };
+    });
 };
 
 export function sendHttpRequest(props) {

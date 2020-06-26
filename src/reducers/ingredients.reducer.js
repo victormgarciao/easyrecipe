@@ -2,7 +2,7 @@ import { cond } from 'ramda';
 import { ADD_INGREDIENTS } from '../actions/ingredients.actions';
 import { isAction, returnState } from './utils/reducers.utils';
 import { ifNot } from '../utils/common.utils';
-import { addIngredientsToStore } from './sideEffects/ingredients.sideefects';
+import { addIngredientsToStore } from './sideEffects/ingredients.side-effects';
 
  
 export const ingredientsReducer = cond([
