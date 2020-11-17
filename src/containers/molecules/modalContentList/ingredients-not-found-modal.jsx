@@ -1,5 +1,4 @@
 import React from 'react';
-import { useModalEffects } from '../../../useEffects/modals.effects';
 import { useErrorEffects } from '../../../useEffects/errors.effects';
 import { ModalHeader } from '../../../components/atoms/modal/header/modal-header';
 import { ModalBody } from '../../../components/atoms/modal/body/modal-body';
@@ -9,11 +8,12 @@ import { AcceptButton } from '../../../components/molecules/Buttons/accept-butto
 import { BugIcon } from '../../../components/atoms/icons/bugIcon';
 import { Link } from '../../../components/atoms/Link/link';
 import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
+import modalQueueStore from '../../../store/modalqueue.store';
 
 export function IngredientsNotFoundModal(props) {
     const { link } = props;
 
-    const { closeModal } = useModalEffects();
+    const { closeModal } = modalQueueStore;
     const { reportErrorLink } = useErrorEffects();
 
     function reportError() {

@@ -1,17 +1,16 @@
 import React from 'react';
-import { useStateValue } from '../../../stateManagement/stateManagement';
+import { observer } from 'mobx-react';
 import { SecondaryTitle } from '../../../components/atoms/SecondaryTitle/secondary-title';
 import { ShopList } from '../../../components/organisms/ShopList/shop-list';
+import store from '../../../store/main.store';
 
-export function ShopListTemplateContainer() {
-    const [state] = useStateValue();
-
-    const { ingredientsState: { ingredientsList } } = state;
-
+function ShopListTemplateContainer() {
     return(
         <>
             <SecondaryTitle>Shop List</SecondaryTitle>
-            <ShopList ingredientsList={ingredientsList} />
+            <ShopList ingredientsList={store.allIngredients} />
         </>
     );
 };
+
+export default observer(ShopListTemplateContainer);

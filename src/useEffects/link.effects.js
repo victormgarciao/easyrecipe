@@ -1,25 +1,23 @@
 import { getIngredientsAndRecipeFromLink } from '../services/data.service';
-import { useIngredientsEffects } from './ingredients.effects';
-import { useRecipesEffects } from './recipes.effects';
-import { useModalEffects } from './modals.effects';
 import { cond, propSatisfies, isNil } from 'ramda';
 import { ifNot } from '../utils/common.utils';
 import {  INGREDIENTS_NOT_FOUND } from '../containers/templates/ModalQueueTemplate/modal-queue.constants';
+import store from '../store/main.store';
+import modalQueueStore from '../store/modalqueue.store';
 
 function useHandleDataFromLink() {
-    const { addIngredients } = useIngredientsEffects();
-    const { addRecipe } = useRecipesEffects();
-    const { addModal } = useModalEffects();
+    const { addModal } = modalQueueStore;
 
     function handleLink(props) {
         const { recipe, ingredients } = props;
-        addIngredients(ingredients);
-        addRecipe(recipe);
+        // TODO, THIS HAS TO BE MORE AUTOMATIC
+        const recipeNormalized = { ...recipe, ingredientsList: ingredients } // THIS HAS TO BE AUTOMATED
+        store.addRecipe(recipeNormalized);
     }
 
     function handleError({ link }) {
         addModal({
-            modalName: INGREDIENTS_NOT_FOUND,
+            name: INGREDIENTS_NOT_FOUND,
             data: { link }
         })
     }

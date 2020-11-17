@@ -1,13 +1,13 @@
 import { reportBugRequest } from "../services/bug-report.service";
-import { useModalEffects } from "./modals.effects";
 import { BUG_REPORTED } from "../containers/templates/ModalQueueTemplate/modal-queue.constants";
+import modalQueueStore from "../store/modalqueue.store";
 
 function useReportErrorLink() {
-    const { addModal, closeModal } = useModalEffects();
+    const { addModal, closeModal } = modalQueueStore;
 
     function doAfterReport() {
         closeModal();
-        addModal({ modalName: BUG_REPORTED });
+        addModal({ name: BUG_REPORTED });
     }
 
     return function(link) {

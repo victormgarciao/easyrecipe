@@ -1,15 +1,15 @@
 import React from 'react';
-import { useModalEffects } from '../../../useEffects/modals.effects';
 import { ModalHeader } from '../../../components/atoms/modal/header/modal-header';
 import { ModalBody } from '../../../components/atoms/modal/body/modal-body';
 import { ModalFooter } from '../../../components/atoms/modal/footer/modal-footer';
 import { AcceptButton } from '../../../components/molecules/Buttons/accept-button';
 import { AmbulanceIcon } from '../../../components/atoms/icons/ambulanceIcon';
 import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
+import modalQueueStore from '../../../store/modalqueue.store';
 
 
 export function BugReportedModal() {
-    const { closeModal } = useModalEffects();
+    const { closeModal } = modalQueueStore;
 
     return (
         <>

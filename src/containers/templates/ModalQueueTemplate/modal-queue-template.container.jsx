@@ -1,17 +1,16 @@
 import React from 'react';
-import { useModalQueueState } from '../../../selectors/modal.selector';
+import { observer } from 'mobx-react';
 import { Modal } from '../../../components/organisms/modal/modal';
+import modalQueueStore from '../../../store/modalqueue.store';
 import { modalMap } from './modal-queue-mapping';
 
-export function ModalQueueTemplateContainer() {
-    const modalQueue = useModalQueueState();
-    const currentModalData = modalQueue[0];
-    const hasModals = !!currentModalData;
+function ModalQueueTemplateContainer() {
+    const { hasModals, currentModal } = modalQueueStore; 
 
     function getModalProps() {
-        const { modalName, modalProps } = currentModalData;
+        const { name: modalName, data: modalData } = currentModal;
         return {
-            modalProps,
+            modalData,
             contentModal: modalMap[modalName],
         };
     }
@@ -22,3 +21,5 @@ export function ModalQueueTemplateContainer() {
         </>
     );
 };
+
+export default observer(ModalQueueTemplateContainer);
