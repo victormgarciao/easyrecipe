@@ -1,5 +1,5 @@
 import { pipe, equals, cond, isNil, not } from 'ramda';
-import { createRecipeObject, createIngredientsObject } from './data.service';
+import { createRecipeObject } from './data.service';
 
 
 function makeElementWithHttpRequest(props) {
@@ -13,7 +13,6 @@ function makeElementWithHttpRequest(props) {
 export const handleDataFromElement = pipe(
     makeElementWithHttpRequest,
     createRecipeObject,
-    createIngredientsObject,
 );
 
 function hasHttpRequestContent(props) {

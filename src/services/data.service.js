@@ -1,38 +1,34 @@
 import { pipe, cond, propSatisfies, isNil, identity } from 'ramda';
 import { getHttpRequest, openHttpRequestWithLink, sendHttpRequest, onHttpRequestReadyStateChange } from './httpRequest.service';
-import { getTitleFromElement, getIngredientListElement, getIngredientList } from './dom.service';
+import { getTitleFromElement, getIngredientsListElement, getIngredientsList } from './dom.service';
 import { ifNot } from '../utils/common.utils';
 
 
-function createIngredient(recipe) {
-    return function makeObject(item) {
-        const { href: recipeLink, title: recipeTitle } = recipe;
-        const { textContent: ingredient } = item;
-    
-        return { recipeLink, ingredient, recipeTitle };
-    };
+function createIngredientFromElement(element) {
+    const { textContent: ingredient } = element;
+    return { ingredient };
 }
 
-function normalizeIngredientsList(props) {
-    const { ingredientList, recipe } = props;
+function formatIngredientsList(props) {
+    const { ingredientListItemElementsArray } = props;
     return {
         ...props,
-        ingredients: ingredientList.map(createIngredient(recipe)),
+        ingredientsList: ingredientListItemElementsArray.map(createIngredientFromElement),
     }
 }
 
 const handleIngredientsList = cond([
-    [ propSatisfies(isNil, 'error'), normalizeIngredientsList ],
+    [ propSatisfies(isNil, 'error'), formatIngredientsList ],
     [ ifNot, identity ],
 ]);
 
 const getIngredientsFromDom = pipe(
-    getIngredientListElement,
-    getIngredientList,
+    getIngredientsListElement,
+    getIngredientsList,
     handleIngredientsList,
 );
 
-export function createIngredientsObject(props) {
+function createIngredientsObject(props) {
     const { linkElement, recipe } = props;
     const allElements = [...linkElement.getElementsByTagName("*")];
     
@@ -44,12 +40,13 @@ export function createIngredientsObject(props) {
 
 export function createRecipeObject(props) {
     const { linkElement, link } = props;
-
+    const { ingredientsList } = createIngredientsObject(props);
     return {
         ...props,
         recipe: {
             href: link,
             title: getTitleFromElement({ linkElement }),
+            ingredientsList,
         },
     };
 }

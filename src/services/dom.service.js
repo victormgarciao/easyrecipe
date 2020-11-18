@@ -49,20 +49,20 @@ const findIngredientsListElement = pipe(
     findCorrectListElement,
 );
 
-export function getIngredientListElement(props) {
+export function getIngredientsListElement(props) {
     const { allElements } = props;
-    const ingredientsListElement = allElements.find(findIngredientsListElement);
-    return { ...props, ingredientsListElement }
+    const listOfIngredients = allElements.find(findIngredientsListElement);
+    return { ...props, listOfIngredients }
 }
 
 
-export function createIngredientList(props) {
-    const { ingredientsListElement } = props;
-    const ingredientList = [...ingredientsListElement.getElementsByTagName('LI')];
+export function createIngredientsList(props) {
+    const { listOfIngredients } = props;
+    const ingredientListItemElementsArray = [...listOfIngredients.getElementsByTagName('LI')];
 
     return {
         ...props,
-        ingredientList,
+        ingredientListItemElementsArray,
         error: null,
     };
 }
@@ -70,14 +70,14 @@ export function createIngredientList(props) {
 export function createIngredientsError(props) {
     return {
         ...props,
-        ingredientList: [],
+        ingredientListItemElementsArray: [],
         error: new Error('Ingredients not found'),
     }
 }
 
-export const getIngredientList = cond([
-    [ propSatisfies(isNil, 'ingredientsListElement'), createIngredientsError],
-    [ ifNot, createIngredientList ],
+export const getIngredientsList = cond([
+    [ propSatisfies(isNil, 'listOfIngredients'), createIngredientsError],
+    [ ifNot, createIngredientsList ],
 ]);
 
 function getAllH1FromElement({ linkElement }) {

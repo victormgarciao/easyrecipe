@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
-import { useLinkEffects } from '../../../useEffects/link.effects';
+import React from 'react';
+import { observer } from 'mobx-react';
 import { RecipeSearch } from '../../../components/molecules/RecipeSearch/recipe-search';
+import modalQueueStore from '../../../store/modalqueue.store';
+import store from '../../../store/main.store';
+import recipeSearchStore from '../../../store/link.store';
 
 export function RecipeSearchContainer() {
-    const { handleDataFromLink } = useLinkEffects();
-    const [link, setLink] = useState('');
-
-    function setLinkValue(event) {
-        setLink(event.target.value);
-    }
-
+    const { link, handleDataFromLink, setLinkFromEvent } = recipeSearchStore;
+    
     function handleSearch() {
-        setLink('');
-        handleDataFromLink(link);
+        const { addModal } = modalQueueStore;
+        const { addRecipe } = store;
+        handleDataFromLink({ addModal, addRecipe });
     }
 
     return(
         <RecipeSearch
             link={link}
             handleSearch={handleSearch}
-            setLinkValue={setLinkValue}
+            setLinkValue={setLinkFromEvent}
         />
     );
 };
+
+export default observer(RecipeSearchContainer);

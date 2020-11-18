@@ -1,12 +1,26 @@
 import { values } from "mobx";
-import { onPatch, types } from "mobx-state-tree";
+import { getParent, onPatch, types } from "mobx-state-tree";
 
 const IngredientModel = types
     .model('IngredientModel', {
-        recipeLink: types.string,
         ingredient: types.string,
-        recipeTitle: types.string,
     })
+
+    .views((self) => {
+        return {
+            get recipeModel() {
+                return getParent(self, 2);
+            },
+
+            get recipeLink() {
+                return self.recipeModel.href;
+            },
+
+            get recipeTitle() {
+                return self.recipeModel.title;
+            },
+        }
+    });
 ;
 
 const RecipeModel = types
