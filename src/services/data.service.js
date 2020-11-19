@@ -31,16 +31,17 @@ const getIngredientsFromDom = pipe(
 function createIngredientsObject(props) {
     const { linkElement, recipe } = props;
     const allElements = [...linkElement.getElementsByTagName("*")];
-    
+    const { ingredientsList, error } = getIngredientsFromDom({ allElements, recipe });
     return {
         ...props,
-        ...getIngredientsFromDom({ allElements, recipe }),
+        ingredientsList,
+        error,
     };
 }
 
 export function createRecipeObject(props) {
     const { linkElement, link } = props;
-    const { ingredientsList } = createIngredientsObject(props);
+    const { ingredientsList, error } = createIngredientsObject(props);
     return {
         ...props,
         recipe: {
@@ -48,6 +49,7 @@ export function createRecipeObject(props) {
             title: getTitleFromElement({ linkElement }),
             ingredientsList,
         },
+        error,
     };
 }
 

@@ -24,10 +24,6 @@ const getDataFromHttpRequest = cond([
     [hasHttpRequestContent, handleDataFromElement]
 ]);
 
-
-
-
-
 export function onHttpRequestReadyStateChange(props) {
     return new Promise((resolve) => {
         const { request } = props;

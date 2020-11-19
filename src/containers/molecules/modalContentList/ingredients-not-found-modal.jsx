@@ -1,5 +1,4 @@
 import React from 'react';
-import { useErrorEffects } from '../../../useEffects/errors.effects';
 import { ModalHeader } from '../../../components/atoms/modal/header/modal-header';
 import { ModalBody } from '../../../components/atoms/modal/body/modal-body';
 import { ModalFooter } from '../../../components/atoms/modal/footer/modal-footer';
@@ -9,15 +8,24 @@ import { BugIcon } from '../../../components/atoms/icons/bugIcon';
 import { Link } from '../../../components/atoms/Link/link';
 import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
 import modalQueueStore from '../../../store/modalqueue.store';
+import { reportBugRequest } from '../../../services/bug-report.service';
+import { BUG_REPORTED } from '../../templates/ModalQueueTemplate/modal-queue.constants';
 
 export function IngredientsNotFoundModal(props) {
     const { link } = props;
 
-    const { closeModal } = modalQueueStore;
-    const { reportErrorLink } = useErrorEffects();
+    const { closeModal, addModal } = modalQueueStore;
+
+    function doAfterReport() {
+        closeModal();
+        addModal({ name: BUG_REPORTED });
+    }
 
     function reportError() {
-        reportErrorLink(link);
+        reportBugRequest({
+            title: '[EXTERNAL BUG] - Ingredients not found on link',
+            body: link,
+        }).then(doAfterReport)
     }
 
     return (
