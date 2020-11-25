@@ -3,23 +3,14 @@ import { onPatch, types } from "mobx-state-tree";
 import { cond, isEmpty } from "ramda";
 import { addBodyStylesForModalInDom, restoreBodyStylesInDom } from "../services/dom.service";
 import { isOneElement } from "../utils/common.utils";
+import ModalModel from "./models/modal.model";
 
-const ModalData = types
-    .model('ModalDataModel', {
-        link: types.optional(types.string, ''),
-    });
-
-const ModalModel = types
-    .model('ModalModel', {
-        name: types.string,
-        data: types.optional(ModalData, {}),
-    })
-;
 
 const ModalQueueModel = types
     .model('ModalQueueModel', {
         queue: types.array(ModalModel),
     })
+
 
     .actions((self) => {
        return {
@@ -27,6 +18,7 @@ const ModalQueueModel = types
                 cond([ [ isEmpty, addBodyStylesForModalInDom ] ])(self.modalQueue);
                 self.queue.push(newModal)
             },
+
 
             closeModal() {
                 cond([ [ isOneElement, restoreBodyStylesInDom ] ])(self.modalQueue)
@@ -41,9 +33,11 @@ const ModalQueueModel = types
                 return values(self.queue);
             },
 
+
             get currentModal() {
                 return self.modalQueue[0];
             },
+
 
             get hasModals() {
                 return !!self.currentModal;
@@ -52,11 +46,13 @@ const ModalQueueModel = types
     })
 ;
 
+
 const modalQueueStore = ModalQueueModel.create();
+
 
 onPatch(modalQueueStore, patch => {
     console.log('from modalQueue', patch);
-    // localStorage.setItem('boxes', JSON.stringify(values(store.boxes)));
 });
+
 
 export default modalQueueStore;

@@ -3,16 +3,46 @@ import { observer } from 'mobx-react';
 import { RecipeSearch } from '../../../components/molecules/RecipeSearch/recipe-search';
 import modalQueueStore from '../../../store/modalqueue.store';
 import store from '../../../store/main.store';
-import recipeSearchStore from '../../../store/link.store';
+import recipeSearchStore from '../../../store/recipe-search.store';
+import { isSuccess, ifNot } from '../../../utils/common.utils';
+import { cond } from 'ramda';
+import { INGREDIENTS_NOT_FOUND } from '../../templates/ModalQueueTemplate/modal-queue.constants';
 
 export function RecipeSearchContainer() {
-    const { link, handleDataFromLink, setLinkFromEvent } = recipeSearchStore;
-    
+    const {
+        clearLink,
+        getRecipeFromLink,
+        link,
+        setLinkFromEvent,
+    } = recipeSearchStore;
+    const { addModal } = modalQueueStore;
+    const { addRecipe } = store;
+
+
     function handleSearch() {
-        const { addModal } = modalQueueStore;
-        const { addRecipe } = store;
-        handleDataFromLink({ addModal, addRecipe });
-    }
+        clearLink();
+        getRecipeFromLink({ link })
+            .then(
+                cond([
+                    [ isSuccess, handleLink ],
+                    [ ifNot, handleError]
+                ])
+            );
+    };
+
+
+    function handleLink({ recipe }) {
+        addRecipe(recipe);
+    };
+
+
+    function handleError({ link }) {
+        addModal({
+            name: INGREDIENTS_NOT_FOUND,
+            data: { link }
+        });
+    };
+
 
     return(
         <RecipeSearch
