@@ -6,7 +6,7 @@ export function RecipeListItem(props) {
     const { children, href } = props;
     return (
         <ListItem>
-            <Link href={href}>{children}</Link>
+            <Link href={href} target='_blank'>{children}</Link>
         </ListItem>
     );
 }
