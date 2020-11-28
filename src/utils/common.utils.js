@@ -1,4 +1,4 @@
-import { head, T, F, propSatisfies, isNil, propEq, cond, propOr, prop } from "ramda";
+import { head, T, F, propSatisfies, isNil, propEq, cond, propOr, prop, not, isEmpty } from "ramda";
 
 
 export function takeFirst(list) { return head(list) };
@@ -36,3 +36,7 @@ export function getPropOrDefault(propName, defaultState) {
 
 
 export const getTextContentProp = prop('textContent');
+
+
+export function exists(something) { return not(isEmpty(something)) };
+

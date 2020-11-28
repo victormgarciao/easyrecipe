@@ -4,7 +4,7 @@ import { RecipeSearch } from '../../../components/molecules/RecipeSearch/recipe-
 import modalQueueStore from '../../../store/modalqueue.store';
 import store from '../../../store/main.store';
 import recipeSearchStore from '../../../store/recipe-search.store';
-import { isSuccess, ifNot } from '../../../utils/common.utils';
+import { isSuccess, ifNot, exists } from '../../../utils/common.utils';
 import { cond } from 'ramda';
 import { INGREDIENTS_NOT_FOUND } from '../../templates/ModalQueueTemplate/modal-queue.constants';
 
@@ -18,8 +18,14 @@ export function RecipeSearchContainer() {
     const { addModal } = modalQueueStore;
     const { addRecipe } = store;
 
-
     function handleSearch() {
+        cond([
+            [ exists, searchRecipe ],
+        ])(link);
+    };
+
+
+    function searchRecipe() {
         clearLink();
         getRecipeFromLink({ link })
             .then(
