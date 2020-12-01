@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { RecipeSearch } from '../../../components/molecules/RecipeSearch/recipe-search';
 import modalQueueStore from '../../../store/modalqueue.store';
@@ -7,6 +7,7 @@ import recipeSearchStore from '../../../store/recipe-search.store';
 import { isSuccess, ifNot, exists } from '../../../utils/common.utils';
 import { cond } from 'ramda';
 import { INGREDIENTS_NOT_FOUND } from '../../templates/ModalQueueTemplate/modal-queue.constants';
+import { isEnterKeyPressed } from '../../../utils/events.utils';
 
 export function RecipeSearchContainer() {
     const {
@@ -17,6 +18,18 @@ export function RecipeSearchContainer() {
     } = recipeSearchStore;
     const { addModal } = modalQueueStore;
     const { addRecipe } = store;
+
+
+    useEffect(() => {
+        const searchOnEnter = cond([ [ isEnterKeyPressed, handleSearch ] ]);
+
+        document.addEventListener('keypress', searchOnEnter);
+        
+        return function cleanup() {
+            document.removeEventListener('keypress', searchOnEnter);
+        };
+    });
+
 
     function handleSearch() {
         cond([
