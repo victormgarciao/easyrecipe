@@ -9,24 +9,50 @@ import { Link } from '../../../components/atoms/Link/link';
 import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
 import modalQueueStore from '../../../store/modalqueue.store';
 import { reportBugRequest } from '../../../services/bug-report.service';
-import { BUG_REPORTED } from '../../templates/ModalQueueTemplate/modal-queue.constants';
+import { BUG_REPORTED, BUG_REPORTED_FAIL } from '../../templates/ModalQueueTemplate/modal-queue.constants';
+import { cond } from 'ramda';
+import { ifNot } from '../../../utils/common.utils';
 
 export function IngredientsNotFoundModal(props) {
     const { link } = props;
 
     const { closeModal, addModal } = modalQueueStore;
 
-    function doAfterReport() {
-        closeModal();
-        addModal({ name: BUG_REPORTED });
-    }
 
     function reportError() {
         reportBugRequest({
             title: '[EXTERNAL BUG] - Ingredients not found on link',
             body: link,
-        }).then(doAfterReport)
-    }
+        })
+            .then(handleRequest);
+    };
+
+
+    function handleRequest(request) {
+        function isSuccess() { return request.status < 400 };
+        request
+            .addEventListener(
+                'load',
+                cond([
+                    [ isSuccess, displayReportSuccess ],
+                    [ ifNot, displayReportFail ]
+                ]),
+            )
+        ;
+    };
+
+
+    function displayReportSuccess() {
+        closeModal();
+        addModal({ name: BUG_REPORTED });
+    };
+
+
+    function displayReportFail() {
+        closeModal();
+        addModal({ name: BUG_REPORTED_FAIL });
+    };
+    
 
     return (
         <>
