@@ -39,4 +39,3 @@ export const getTextContentProp = prop('textContent');
 
 
 export function exists(something) { return not(isEmpty(something)) };
-
