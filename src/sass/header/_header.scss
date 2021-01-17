@@ -1,0 +1,29 @@
+@import 'header-variables';
+
+@import './atoms/logo';
+
+$min-space: 0.5em;
+
+header {
+    background-color: white;
+    border-bottom: 1px solid $light-grey;
+    height: 4em;
+    left: 0;
+    padding: $min-space;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+
+@include breakpoint-up(medium){
+    header {
+        padding: $min-space $medium-lateral-space;
+    }
+}
+
+@include breakpoint-up(xlarge){
+    header {
+        padding: $min-space $xl-lateral-space;
+    }
+}
