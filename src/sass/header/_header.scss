@@ -1,8 +1,5 @@
 @import 'header-variables';
-
 @import './atoms/logo';
-
-$min-space: 0.5em;
 
 header {
     background-color: white;
@@ -15,6 +12,31 @@ header {
     top: 0;
     z-index: 2;
 }
+
+// Shadow Transition
+
+header::before {
+    /* Position the pseudo-element. */
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* Create the box shadow at expanded size. */
+    box-shadow: $shadow;
+
+    /* Hidden by default. */
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+header:not([data-scroll='0'])::before {
+    opacity: 1;
+}
+
+// Media queries
 
 @include breakpoint-up(medium){
     header {

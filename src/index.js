@@ -2,7 +2,7 @@ import React from  'react';
 import ReactDOM from 'react-dom';
 
 // import { MainTitle } from './components/atoms/MainTitle/main-title';
-import { Header } from './components/organisms/Header/Header';
+import { HeaderContainer } from './containers/atom/Header/Header.container';
 
 import RecipeSearchContainer from './containers/molecules/RecipeSearch/recipe-search.container';
 import ShopListTemplateContainer from './containers/templates/ShopListTemplate/shop-list-template.container';
@@ -14,7 +14,7 @@ import './sass/styles.scss';
 function App() {
     return (
         <div>
-            <Header />
+            <HeaderContainer />
             <main
                 style={{ margin: '64px 8px 0' }}
             >
