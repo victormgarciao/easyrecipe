@@ -3,12 +3,12 @@ import React from 'react';
 export function Button(props) {
     const {
         children,
-        customClassNames,
+        classes = '',
         ...buttonProps
     } = props;
     return (
         <button
-            className={`ui button ${customClassNames}`}
+            className={`cta ${classes}`}
             {...buttonProps}
         >
             {children}

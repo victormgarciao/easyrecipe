@@ -1,5 +1,4 @@
-@import 'header-variables';
-@import './atoms/logo';
+$min-space: 0.5em;
 
 header {
     background-color: white;
@@ -11,6 +10,14 @@ header {
     right: 0;
     top: 0;
     z-index: 2;
+
+    .logo {
+        margin-right: $separation;
+    }
+
+    & * {
+        z-index: 2;
+    }
 }
 
 // Shadow Transition

@@ -10,6 +10,7 @@ import RecipesListTemplateContainer from './containers/templates/RecipesListTemp
 import ModalQueueTemplateContainer from './containers/templates/ModalQueueTemplate/modal-queue-template.container';
 
 import './sass/styles.scss';
+import { CenteredSection } from './components/atoms/CenteredSection/centered-section';
 
 function App() {
     return (
@@ -18,10 +19,9 @@ function App() {
             <main
                 style={{ margin: '64px 8px 0' }}
             >
-                <div className="recipe-search-wrapper" style={{ display: 'flex', justifyContent: 'center'}}>
+                <CenteredSection>
                     <RecipeSearchContainer />
-                </div>
-                {/* <MainTitle>EasyRecipe</MainTitle> */}
+                </CenteredSection>
                 <ShopListTemplateContainer />
                 <RecipesListTemplateContainer />
                 <ModalQueueTemplateContainer />

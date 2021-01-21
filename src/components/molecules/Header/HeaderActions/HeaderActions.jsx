@@ -1,10 +1,11 @@
 import React from 'react';
+import { Button } from '../../../atoms/Button/button';
 
 export function HeaderActions() {
     return (
         <div className="header__actions flex flex-jc-fe flex-ai-c hide-for-mobile">
-            <button>x</button>
-            <button>x</button>
+            <Button onClick={() => {}}>x</Button>
+            <Button>x</Button>
         </div>
     );
 }

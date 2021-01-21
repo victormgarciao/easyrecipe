@@ -1,32 +1,23 @@
 import React from 'react';
 import { Button } from '../../atoms/Button/button';
 import { InputText } from '../../atoms/InputText/input-text';
+import { ShadowWrapper } from '../../atoms/ShadowWrapper/shadow-wrapper';
 
-const customStyle = {
-    root: {
-        maxWidth: '600px',
-        width: '100%',
-        paddingTop: '1em',
-        paddingBottom: '1em',
-    },
-};
 
 export function RecipeSearch(props) {
     const { link, setLinkValue, handleSearch } = props;
 
     return(
-        <div className="ui action input" style={customStyle.root}>
+        <ShadowWrapper classes='recipe-search'>
             <InputText
                 placeholder="Insert Recipe Link"
                 onChange={setLinkValue}
                 value={link}
+                classes='hide-border-right'
             />
-            <Button
-                className="ui button"
-                onClick={handleSearch}
-            >
+            <Button classes="hide-border-left" onClick={handleSearch} >
                 Get Ingredients...
             </Button>
-        </div>
+        </ShadowWrapper>
     );
 };

@@ -42,3 +42,15 @@ html {
         display: none;
     }
 }
+
+.hide-border-right {
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-right-color: transparent!important;
+}
+
+.hide-border-left {
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    border-left-color: transparent!important;
+}
