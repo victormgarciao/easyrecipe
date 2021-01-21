@@ -1,0 +1,29 @@
+.input {
+    &--text {
+        background: white;
+        border: none;
+        border: 1px solid $light-grey;
+        border-radius: $border-radius;
+        flex: 1 0 auto;
+        margin: 0;
+        max-width: 100%;
+        line-height: $separation;
+        outline: 0;
+        padding: .6875em 1em;
+        text-align: left;
+        transition: border-color .3s ease, color .7s ease;
+    
+        &::placeholder {
+            opacity: .7;
+            transition: opacity .3s ease;
+        }
+    
+        &:focus {
+            border-color: $medium-grey;
+    
+            &::placeholder {
+                opacity: 1;
+            }
+        }
+    }
+}

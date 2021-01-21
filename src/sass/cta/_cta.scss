@@ -1,0 +1,23 @@
+.cta {
+    background: $light-grey;
+    border: none;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+    color: $dark-grey;
+    cursor: pointer;
+    font-weight: 400;
+    line-height: $separation;
+    outline: 0;
+    padding: .75em 1.5em;
+    text-shadow: none;
+    text-transform: none;
+    text-align: center;
+    text-decoration: none;
+    transition: color .3s ease, background .3s ease;
+    user-select: none;
+
+    &:hover {
+        background-color: $medium-grey;
+        color: $almost-black;
+    }
+}
