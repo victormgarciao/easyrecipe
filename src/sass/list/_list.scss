@@ -1,0 +1,13 @@
+.list-no-semantic {
+    list-style-type: none;
+    margin: 1rem 0;
+    padding: 0;
+
+    &__item {
+        display: list-item;
+        line-height: $separation;
+        list-style-type: none;
+        list-style-position: outside;
+        padding: $_3px 0;
+    }
+}
