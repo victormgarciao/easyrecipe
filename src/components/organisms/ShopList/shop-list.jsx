@@ -4,7 +4,8 @@ import { ShopListItem } from '../../molecules/ShopListItem/shop-list-item';
 
 function createShopListItemComponent(item) {
     const {recipeLink, ingredient, recipeTitle } = item;
-    return <ShopListItem key={`${recipeLink}-${ingredient}`}>{ingredient} - {recipeTitle}</ShopListItem>;
+    const key = `${recipeLink}-${ingredient}`;
+    return <ShopListItem key={key} itemKey={key}>{ingredient} - {recipeTitle}</ShopListItem>;
 }
 
 export function ShopList(props) {

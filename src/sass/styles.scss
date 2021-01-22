@@ -1,9 +1,11 @@
 @import 'media';
 @import 'variables';
 @import 'global';
+@import 'mixins';
 
 @import './header/header';
 @import './recipeSearch/recipeSearch';
 @import './input/input';
 @import './shadowWrapper/shadowWrapper';
 @import './cta/cta';
+@import './checkbox/checbox';

@@ -1,8 +1,8 @@
 .input {
-    &--text {
+    &__text {
         background: white;
         border: none;
-        border: 1px solid $light-grey;
+        border: 1px solid $primary-color;
         border-radius: $border-radius;
         flex: 1 0 auto;
         margin: 0;
@@ -19,7 +19,7 @@
         }
     
         &:focus {
-            border-color: $medium-grey;
+            border-color: $active-color;
     
             &::placeholder {
                 opacity: 1;

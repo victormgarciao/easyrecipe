@@ -1,0 +1,77 @@
+.checkbox-mine {
+    input {
+        &:not(:checked),
+        &:checked {
+            left: 0;
+            opacity: 0.01;
+            position: absolute;
+
+            /* Base for label styling */
+            & + label {
+                cursor: pointer;
+                line-height: 1.7;
+                padding-left: $big-separation;
+                position: relative;
+
+                /* checkbox aspect */
+                &::before {
+                    @include square(1.0625rem);
+                    background: #FFF;
+                    border: 1px solid $primary-color;
+                    border-radius: $border-radius;
+                    content: '';
+                    left: 0;
+                    position: absolute;
+                    top: 0.1875rem;
+                    transition: all .3s;
+                }
+
+                /* checked mark aspect */
+                &::after {
+                    content: '✕';
+                    position: absolute;
+                    top: .6875rem;
+                    left: .1875rem;
+                    color: $active-color;
+                    line-height: 0;
+                    transition: all .3s;
+                }
+            }
+
+            /* Accessibility */
+            &:focus {
+                & + label::before {
+                    border-color: $active-color;
+                }
+            }
+        }
+
+        /* checked mark aspect changes */
+        &:not(:checked) + label:after {
+            opacity: 0;
+        }
+
+        &:checked {
+            + label {
+                color: $medium-grey;
+
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+
+        /* Disabled checkbox */
+        &:disabled:not(:checked) + label:before,
+        &:disabled:checked + label:before {
+            box-shadow: none;
+            border-color: $medium-grey;
+            background-color: $light-grey;
+        }
+
+        &:disabled:checked + label:after,
+        &:disabled + label {
+            color: $dark-grey;
+        }
+    }
+}

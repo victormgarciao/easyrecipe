@@ -1,17 +1,11 @@
 import React from 'react';
 
 export function Checkbox(props) {
-    const { children, name } = props;
+    const { children, name, id } = props;
     return (
-        <>
-        <div className="checkbox-mine">
-            <input type="checkbox" name={name} />
-            <label>{children}</label>
+        <div className="checkbox-mine flex flex-jc-ai">
+            <input type="checkbox" name={name} id={id} />
+            <label for={id}>{children}</label>
         </div>
-        <div className="ui checkbox">
-            <input type="checkbox" name={name} />
-            <label>{children}</label>
-        </div>
-        </>
     );
 }

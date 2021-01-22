@@ -6,7 +6,7 @@ export function InputText(props) {
         <input
             type="text"
             placeholder={placeholder}
-            className={`input--text ${classes}`}
+            className={`input__text ${classes}`}
             {...inputProps}
         />
     );
