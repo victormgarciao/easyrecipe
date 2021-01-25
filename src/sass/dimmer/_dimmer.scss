@@ -1,0 +1,13 @@
+.dimmer-custom {
+    background-color: rgba(0,0,0,.85);
+    position: absolute;
+    height: 100%;
+    left: 0!important;
+    line-height: $separation;
+    top: 0!important;
+    transition: background-color .5s linear;
+    user-select: none;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 1000;
+}

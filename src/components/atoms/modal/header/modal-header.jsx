@@ -2,7 +2,7 @@ import React from 'react';
 
 export function ModalHeader({children}) {
     return (
-        <div className="ui icon header">
+        <div className="modal-custom__header">
             {children}
         </div>
     );

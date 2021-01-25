@@ -2,16 +2,24 @@ $light-grey: #e0e1e2;
 $medium-grey: #ccc;
 $dark-grey: #666;
 $almost-black: #222;
-$red: red;
+$white: #fff;
+$red: #db2828;
+$green: #21ba45;
 
 $xl-lateral-space: 12.5rem;
 $medium-lateral-space: 6.25rem;
 
+
+$tiny-separation: 0.3125rem;
+$small-separation: 0.625rem;
 $separation: 1.25rem;
 $big-separation: 2rem;
 
 $_1px: .0625rem;
 $_3px: .1875rem;
+
+$_680px: 42.5rem;
+$_760px: 47.5rem;
 
 $shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
 
@@ -19,3 +27,6 @@ $border-radius: 3px;
 
 $primary-color: pink;
 $active-color: red;
+
+$icon-normal: 1rem;
+$icon-big: 3rem;

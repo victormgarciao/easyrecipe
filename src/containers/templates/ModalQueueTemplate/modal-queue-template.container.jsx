@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Modal } from '../../../components/organisms/modal/modal';
+import { ModalWrapper } from '../../../components/organisms/modal-wrapper/modal-wraper';
 import modalQueueStore from '../../../store/modalqueue.store';
 import { modalMap } from './modal-queue-mapping';
 
@@ -17,7 +17,7 @@ function ModalQueueTemplateContainer() {
 
     return (
         <>
-            {hasModals && <Modal {...getModalProps()} />}
+            {hasModals && <ModalWrapper {...getModalProps()} />}
         </>
     );
 };

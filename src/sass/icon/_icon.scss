@@ -1,0 +1,69 @@
+.icon-custom {
+    & > i {
+        display: block;
+        font-family: 'icomoon' !important;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+        line-height: 1;
+        padding: 0;
+        text-transform: none;
+    
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    // colors
+    & > .-red {
+        color: $red;
+    }
+
+    & > .-green {
+        color: $green;
+    }
+
+    // Icons
+    & > .-pin:before {
+        content: "\e900";
+    }
+    & > .-pin-outline:before {
+        content: "\e901";
+    }
+    & > .-virus:before {
+        content: "\e902";
+    }
+    & > .-grid:before {
+        content: "\e903";
+    }
+    & > .-linkedin:before {
+        content: "\e904";
+    }
+    & > .-mail:before {
+        content: "\e905";
+    }
+    & > .-menu:before {
+        content: "\e906";
+    }
+    & > .-search:before {
+        content: "\e907";
+    }
+    & > .-list:before {
+        content: "\e908";
+    }
+    & > .-settings:before {
+        content: "\e909";
+    }
+    & > .-trash:before {
+        content: "\e90a";
+    }
+    & > .-twitter:before {
+        content: "\e90b";
+    }
+    & > .-close:before {
+        content: "\e90c";
+    }
+    & > .-doctor:before {
+        content: "\e90d";
+    }
+}

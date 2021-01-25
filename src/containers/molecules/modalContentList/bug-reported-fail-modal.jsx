@@ -3,19 +3,20 @@ import { ModalHeader } from '../../../components/atoms/modal/header/modal-header
 import { ModalBody } from '../../../components/atoms/modal/body/modal-body';
 import { ModalFooter } from '../../../components/atoms/modal/footer/modal-footer';
 import { AcceptButton } from '../../../components/molecules/Buttons/accept-button';
-import { AmbulanceIcon } from '../../../components/atoms/icons/ambulanceIcon';
 import { ModalTitle } from '../../../components/atoms/modal/title/modal-title';
 import modalQueueStore from '../../../store/modalqueue.store';
 import { Link } from '../../../components/atoms/Link/link';
+import { Modal } from '../../../components/atoms/modal/modal';
+import { DoctorIcon } from '../../../components/atoms/icons/doctorIcon';
 
 
 export function BugReportedModalFail() {
     const { closeModal } = modalQueueStore;
 
     return (
-        <>
+        <Modal>
             <ModalHeader>
-                <AmbulanceIcon customClassNames='red'/>
+                <DoctorIcon classes='-red'/>
                 <ModalTitle>Something went wrong!</ModalTitle>
             </ModalHeader>
             <ModalBody>
@@ -25,6 +26,6 @@ export function BugReportedModalFail() {
             <ModalFooter>
                 <AcceptButton onClick={closeModal}>OK</AcceptButton>
             </ModalFooter>
-        </>
+        </Modal>
     )
 }

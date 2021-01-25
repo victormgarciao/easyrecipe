@@ -8,10 +8,9 @@ export function CancelButton(props) {
     } = props;
     return (
         <Button
-            customClassNames="red basic cancel inverted"
+            classes="-red"
             {...buttonProps}
         >
-            <i className="remove icon"></i>
             {children}
         </Button>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal } from '../../../components/atoms/modal/modal';
 import { ModalHeader } from '../../../components/atoms/modal/header/modal-header';
 import { ModalBody } from '../../../components/atoms/modal/body/modal-body';
 import { ModalFooter } from '../../../components/atoms/modal/footer/modal-footer';
@@ -55,9 +56,9 @@ export function IngredientsNotFoundModal(props) {
     
 
     return (
-        <>
+        <Modal>
             <ModalHeader>
-                <BugIcon customClassNames='red'/>
+                <BugIcon classes='-red'/>
                 <ModalTitle>Is it a recipes website?</ModalTitle>
             </ModalHeader>
             <ModalBody>
@@ -68,6 +69,6 @@ export function IngredientsNotFoundModal(props) {
                 <CancelButton onClick={closeModal}>No, thanks</CancelButton>
                 <AcceptButton onClick={reportError}>Report a bug</AcceptButton>
             </ModalFooter>
-        </>
+        </Modal>
     )
 }

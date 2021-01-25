@@ -8,10 +8,9 @@ export function AcceptButton(props) {
     } = props;
     return (
         <Button
-            customClassNames="green ok inverted"
+            classes="-green"
             {...buttonProps}
         >
-            <i className="checkmark icon"></i>
             {children}
         </Button>
     );
