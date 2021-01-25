@@ -1,13 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { SecondaryTitle } from '../../../components/atoms/SecondaryTitle/secondary-title';
+import { SectionTitle } from '../../../components/atoms/SectionTitle/section-title';
 import { ShopList } from '../../../components/organisms/ShopList/shop-list';
 import store from '../../../store/main.store';
 
 function ShopListTemplateContainer() {
     return(
         <>
-            <SecondaryTitle>Shop List</SecondaryTitle>
+            <SectionTitle>Shop List</SectionTitle>
             <ShopList ingredientsList={store.allIngredients} />
         </>
     );

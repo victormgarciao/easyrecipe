@@ -1,13 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { SecondaryTitle } from '../../../components/atoms/SecondaryTitle/secondary-title';
+import { SectionTitle } from '../../../components/atoms/SectionTitle/section-title';
 import { RecipeList } from '../../../components/organisms/RecipeList/recipe-list';
 import store from '../../../store/main.store';
 
 export function RecipesListTemplateContainer() {
     return (
         <>
-            <SecondaryTitle>Recipes</SecondaryTitle>
+            <SectionTitle>Recipes</SectionTitle>
             <RecipeList recipesList={store.recipesList} />
         </>
     );
