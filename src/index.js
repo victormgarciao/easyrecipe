@@ -1,7 +1,6 @@
 import React from  'react';
 import ReactDOM from 'react-dom';
 
-// import { MainTitle } from './components/atoms/MainTitle/main-title';
 import { HeaderContainer } from './containers/atom/Header/Header.container';
 
 import RecipeSearchContainer from './containers/molecules/RecipeSearch/recipe-search.container';
