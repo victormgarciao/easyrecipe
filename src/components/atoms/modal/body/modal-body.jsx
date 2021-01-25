@@ -8,7 +8,7 @@ const customStyles = {
 
 export function ModalBody({children}) {
     return (
-        <div className="modal-custom__content" style={customStyles.root}>
+        <div className="modal__content" style={customStyles.root}>
             {children}
         </div>
     );
