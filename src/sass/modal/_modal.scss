@@ -1,4 +1,4 @@
-.modal-custom {
+.modal {
     border: none;
     border-radius: 0;
     color: $white;
@@ -44,7 +44,7 @@
 }
 
 @include breakpoint-up(medium){
-    .modal-custom {
+    .modal {
         width: $_680px;
 
         &__content {
@@ -64,7 +64,7 @@
 }
 
 @include breakpoint-up(xlarge){
-    .modal-custom {
+    .modal {
         width: $_760px;
     }
 }
